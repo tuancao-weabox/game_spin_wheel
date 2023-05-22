@@ -58,40 +58,62 @@ ScreenGamePlay = {
     };
     drawButton($gameSystem._DOMdivContent, "btnPlay", "Quay", "btn", 0, 35);
     $("#btnPlay").tap(async function () {
-      let speed = getRndInteger(1, 100);
-      let interval = setInterval(() => {
-        $gameScreen._pictures[1]._rotationSpeed += 1;
-        if ($gameScreen._pictures[1]._rotationSpeed == speed) {
-          clearInterval(interval);
-          setTimeout(() => {
-            let interval2 = setInterval(() => {
-              $gameScreen._pictures[1]._rotationSpeed--;
-              if ($gameScreen._pictures[1]._rotationSpeed == 0) {
-                clearInterval(interval2);
-                let a = $gameScreen._pictures[1]._angle / 360;
-                let n = (10 - a * 10) % 10;
-                if (-n > parseInt(-n) + 0.5) {
-                  n = Math.floor(n);
-                } else {
-                  n = parseInt(n);
+      if ($gameScreen._pictures[1]._rotationSpeed == 0) {
+        let speed = getRndInteger(1, 100);
+        let interval = setInterval(() => {
+          $gameScreen._pictures[1]._rotationSpeed += 1;
+          if ($gameScreen._pictures[1]._rotationSpeed == speed) {
+            clearInterval(interval);
+            setTimeout(() => {
+              let interval2 = setInterval(() => {
+                $gameScreen._pictures[1]._rotationSpeed--;
+                if ($gameScreen._pictures[1]._rotationSpeed == 0) {
+                  clearInterval(interval2);
+                  let a = $gameScreen._pictures[1]._angle / 360;
+                  let n = (10 - a * 10) % 10;
+                  if (-n > parseInt(-n) + 0.5) {
+                    n = Math.floor(n);
+                  } else {
+                    n = parseInt(n);
+                  }
+                  let res = spinWheel[10 + n];
+                  let msg = "";
+                  if (res == 0 || !res) {
+                    msg = "Chúc bạn may mắn lần sau";
+                  } else {
+                    msg = "Bạn nhận được " + res + "K";
+                  }
+                  showPopup(msg);
                 }
-                let res = spinWheel[10 + n];
-                let msg = "";
-                if (res == 0 || !res) {
-                  msg = "Chúc bạn may mắn lần sau";
-                } else {
-                  msg = "Bạn nhận được " + res + "K";
-                }
-                showPopup(msg);
-              }
-            }, 100);
-          }, 3000);
-        }
-      }, 100);
+              }, 100);
+            }, 3000);
+          }
+        }, 100);
+      }
     });
     $gameSystem._DOMdivContent.style.background = "none";
-    $gameScreen.showPicture(1, "wheel", 1, 400, 300, 100, 100, 255, 0);
-    $gameScreen.showPicture(2, "arrow", 1, 650, 300, 100, 100, 255, 0);
+    $gameScreen.showPicture(
+      1,
+      "wheel",
+      1,
+      Graphics.width / 2,
+      Graphics.height / 2,
+      100,
+      100,
+      255,
+      0
+    );
+    $gameScreen.showPicture(
+      2,
+      "arrow",
+      1,
+      Graphics.width / 2 + 250,
+      Graphics.height / 2,
+      100,
+      100,
+      255,
+      0
+    );
   },
 };
 
