@@ -89,7 +89,7 @@ function setInputFilter(textbox, inputFilter, errMsg) {
   });
 }
 ReloadImage = () => {
-  for (let i = 2; i <= 8; i++) {
+  for (let i = 2; i <= 10; i++) {
     ImageManager.loadSystem(i);
   }
   // for (let i = 25; i < 40; i++) {

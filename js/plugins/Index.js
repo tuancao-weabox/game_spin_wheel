@@ -34,9 +34,6 @@ var parameters = PluginManager.parameters("Index");
  */
 ScreenGamePlay = {
   createSceen: () => {
-    // for (let index = 0; index < array.length; index++) {
-    //   const element = array[index];
-    // }
     var urlParams = new URLSearchParams(window.location.search);
     var link = urlParams.get("link");
     createContent();
