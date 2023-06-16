@@ -199,7 +199,7 @@ showPopup = (msg, type, timeout, diasbleAutoClose) => {
     "popup",
     0,
     0,
-    "./img/system/10.png"
+    "./img/system/2.png"
   );
   popup.style.zIndex = 999;
   if (!msg) {
@@ -225,7 +225,7 @@ showPopupResult = (msg, link) => {
     "popupResult",
     0,
     0,
-    "./img/system/10.png"
+    "./img/system/2.png"
   );
   popup.style.zIndex = 999;
   if (!msg) {
@@ -251,6 +251,7 @@ showPopupResult = (msg, link) => {
   drawText(popup, "ĐĂNG KÝ ĐỂ NHẬN NGAY", "", 0, 70, "");
 
   drawImgButton($gameSystem._DOMdivContent, "btnRegister", "", "3", 0, 70);
+  drawImgButton(popup, "btnExit", "", "3", 90, -90);
 
   $("#btnRegister").tap(async function () {
     location.href = link;
