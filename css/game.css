@@ -177,3 +177,8 @@ button span {
   width: 40%;
   height: 6%;
 }
+
+#btnExit {
+  width: 15%;
+  height: 20%;
+}

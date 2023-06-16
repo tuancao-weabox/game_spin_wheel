@@ -218,7 +218,7 @@ showPopup = (msg, type, timeout, diasbleAutoClose) => {
 };
 
 showPopupResult = (msg, link) => {
-  drawDOM($gameSystem._DOMdivContent, "divDialog", "div");
+  let dialog = drawDOM($gameSystem._DOMdivContent, "divDialog", "div");
 
   let popup = createWindow(
     $gameSystem._DOMdivContent,
@@ -250,11 +250,25 @@ showPopupResult = (msg, link) => {
   drawImg(divM, "", "num_K", x, 0, "char");
   drawText(popup, "ĐĂNG KÝ ĐỂ NHẬN NGAY", "", 0, 70, "");
 
-  drawImgButton($gameSystem._DOMdivContent, "btnRegister", "", "3", 0, 70);
-  drawImgButton(popup, "btnExit", "", "3", 90, -90);
+  let btnRegister = drawImgButton(
+    $gameSystem._DOMdivContent,
+    "btnRegister",
+    "",
+    "3",
+    0,
+    70
+  );
+  drawImgButton(popup, "btnExit", "", "10", 90, -90);
 
   $("#btnRegister").tap(async function () {
     location.href = link;
+  });
+
+  $("#btnExit").tap(async function () {
+    $gameSystem._DOMdivContent.removeChild(popup);
+    $gameSystem._DOMdivContent.removeChild(dialog);
+    $gameSystem._DOMdivContent.removeChild(btnRegister);
+    // location.reload();
   });
 
   // if (!diasbleAutoClose) {
