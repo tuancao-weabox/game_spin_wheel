@@ -199,7 +199,7 @@ showPopup = (msg, type, timeout, diasbleAutoClose) => {
     "popup",
     0,
     0,
-    "./img/system/2.png"
+    "./img/system/10.png"
   );
   popup.style.zIndex = 999;
   if (!msg) {
@@ -213,8 +213,58 @@ showPopup = (msg, type, timeout, diasbleAutoClose) => {
     }
     setTimeout(() => {
       $gameSystem._DOMdivContent.removeChild(popup);
-    }, 3000);
+    }, 1000);
   }
+};
+
+showPopupResult = (msg, link) => {
+  drawDOM($gameSystem._DOMdivContent, "divDialog", "div");
+
+  let popup = createWindow(
+    $gameSystem._DOMdivContent,
+    "popupResult",
+    0,
+    0,
+    "./img/system/10.png"
+  );
+  popup.style.zIndex = 999;
+  if (!msg) {
+    msg = "Đăng ký thất bại.";
+  }
+  drawText(popup, "BẠN NHẬN ĐƯỢC", "", 0, -30, "");
+
+  let characters = [];
+  console.log(msg);
+  console.log(msg.length);
+  let divM = drawDOM(popup, "", "div", "result", 0, 20);
+  let x = -15;
+  if (msg.length == 3) {
+    x = -20;
+  }
+  for (let i = 0; i < msg.length; i++) {
+    let char = msg.charAt(i);
+    console.log(char);
+    drawImg(divM, "", "num_" + char, x, 0, "char");
+    x = x + 13;
+  }
+  drawImg(divM, "", "num_K", x, 0, "char");
+  drawText(popup, "ĐĂNG KÝ ĐỂ NHẬN NGAY", "", 0, 70, "");
+
+  drawImgButton($gameSystem._DOMdivContent, "btnRegister", "", "3", 0, 70);
+
+  $("#btnRegister").tap(async function () {
+    location.href = link;
+  });
+
+  // if (!diasbleAutoClose) {
+  //   let t = 1000;
+  //   if (timeout) {
+  //     t = timeout;
+  //   }
+  //   setTimeout(() => {
+  //     $gameSystem._DOMdivContent.removeChild(popup);
+  //   }, 3000);
+  // }
 };
 
 var styleElement = document.createElement("style");
